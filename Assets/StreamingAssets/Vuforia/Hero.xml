@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="2000_lama" size="0.150000 0.067565" />
+    <ImageTarget name="5000_lama" size="0.150000 0.067250" />
+    <ImageTarget name="10000_lama" size="0.150000 0.067148" />
+    <ImageTarget name="20000_lama" size="0.150000 0.065977" />
+    <ImageTarget name="50000_lama" size="0.150000 0.065273" />
+    <ImageTarget name="1000_baru" size="0.150000 0.068000" />
+    <ImageTarget name="2000_baru" size="0.150000 0.069250" />
+    <ImageTarget name="10000_baru" size="0.150000 0.066064" />
+    <ImageTarget name="20000_baru" size="0.150000 0.064787" />
+    <ImageTarget name="50000_baru" size="0.150000 0.064468" />
+    <ImageTarget name="100000_baru" size="0.150000 0.063594" />
+    <ImageTarget name="100000_lama" size="0.150000 0.064102" />
+    <ImageTarget name="1000_lama" size="0.150000 0.067750" />
+    <ImageTarget name="5000_baru" size="0.150000 0.067500" />
+  </Tracking>
+</QCARConfig>
