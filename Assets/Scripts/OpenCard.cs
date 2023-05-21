@@ -22,6 +22,7 @@ public class OpenCard : MonoBehaviour
 	bool shaked = false;
 	AudioSource audioSource;
 	AudioClip whoosh, boom;
+	string openChar;
 	// Audio hooray dipisah karena, jika menggunakan audio ini kecepatannya beda karena ini dipercepat saat "Boom"
 	public AudioSource hooray, click;
 	List<string> newData = new List<string>();
@@ -42,6 +43,7 @@ public class OpenCard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		openChar = JsonConvert.DeserializeObject<Dictionary<string, string>>(SaveLoad.LoadSession())["character"];
 		var loadData = SaveLoad.Load();
 		var values = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(loadData);
 		foreach(string v in values["opened"]){
@@ -49,7 +51,7 @@ public class OpenCard : MonoBehaviour
 		}
 		
 		// Cek apakah sudah ada atau belum
-		if(values["opened"].Contains(Vars.openChar)){
+		if(values["opened"].Contains(openChar)){
 			exist = true;
 		}
 		
@@ -62,7 +64,7 @@ public class OpenCard : MonoBehaviour
 		
 		// Jika sudah ada langsung ganti skin aja dan berputar
 		if(exist){
-			SetTexture("Unlocked/" + Vars.openChar);
+			SetTexture("Unlocked/" + openChar);
 			transform.Rotate(0, 0.5f, 0);
 		}
     }
@@ -75,7 +77,7 @@ public class OpenCard : MonoBehaviour
 		if(transform.position.y == 10 && clicked){
 			ShowEffect();
 			Invoke("Turun", 2f);
-			SetTexture("Unlocked/" + Vars.openChar);
+			SetTexture("Unlocked/" + openChar);
 			opened = true;
 		}
 		// Jika sudah terbuka maka berputar 
@@ -113,10 +115,13 @@ public class OpenCard : MonoBehaviour
 	
 	public void Next(){
 		if(exist){
-			print("sudah ada ini");
+			// Jika character sudah ada
+			SaveLoad.SaveSession(openChar);
+			SceneManager.LoadScene("About");
 		}else{
-			Vars.aboutChar = Vars.openChar;
-			newData.Add(Vars.openChar);
+			// Jika character belum ada
+			SaveLoad.SaveSession(openChar);
+			newData.Add(openChar);
 			SaveLoad.Save(newData);
 			SceneManager.LoadScene("About");
 		}

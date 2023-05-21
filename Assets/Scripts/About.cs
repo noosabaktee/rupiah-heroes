@@ -12,6 +12,7 @@ public class About : MonoBehaviour
 	public GameObject AboutHeight;
 	public GameObject Panel;
 	public GameObject Photo;
+	string aboutChar;
 	
 	float about_height;
 	float panel_height;
@@ -28,15 +29,15 @@ public class About : MonoBehaviour
 	
     void Start()
     {
-		
+		aboutChar = JsonConvert.DeserializeObject<Dictionary<string, string>>(SaveLoad.LoadSession())["character"];	
 		// Tampilkan data 
 		var loadData = SaveLoad.LoadHero();
 		var values = JsonConvert.DeserializeObject<object>(loadData);
 		var heroes = JObject.FromObject(values).ToObject<Dictionary<string, object>>();
-		var hero = JObject.FromObject(heroes[Vars.aboutChar]).ToObject<Dictionary<string, object>>();
+		var hero = JObject.FromObject(heroes[aboutChar]).ToObject<Dictionary<string, object>>();
 		
 		// Set value text
-		SetImage("About/" + Vars.aboutChar);
+		SetImage("About/" + aboutChar);
 		Name.text = hero["name"].ToString();
 		As.text = hero["as"].ToString();
 		Aka.text = hero["aka"].ToString();

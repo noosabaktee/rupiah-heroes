@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Splash Screen.unity
     guid: d498a4f0502ffbe43b79e4406de689ef
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 9e2e9048f2af56d44aaa218ed69c95b3
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
@@ -20,7 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/About.unity
     guid: 324969ac71c56f4439246f8ea9ec3698
-  - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: 9e2e9048f2af56d44aaa218ed69c95b3
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ef013ed0032aa9343bfcb6c6a16d04df,
+      type: 2}

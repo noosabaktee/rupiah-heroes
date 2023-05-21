@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 public class SaveLoad : MonoBehaviour
 {
 	public static string savePath = Application.persistentDataPath + "/saveData.json";
+	public static string sessionPath = Application.persistentDataPath + "/session.json";
+	public static string heroesPath = Application.streamingAssetsPath + "/pahlawan.json";
 
     public static void Save(List<string> data)
 	{
@@ -14,7 +18,6 @@ public class SaveLoad : MonoBehaviour
 		using (StreamWriter streamWriter = new StreamWriter(savePath)){
 			streamWriter.Write(saveDataString);
 		}
-		print(saveDataString);
 	}
 	
 	public static string Load()
@@ -25,10 +28,29 @@ public class SaveLoad : MonoBehaviour
 		}
 		return savedDataString;
 	}
+
+	public static void SaveSession(string data)
+	{
+		SessionData session = new SessionData() {character=data};
+		string saveDataString = JsonUtility.ToJson(session);
+		using (StreamWriter streamWriter = new StreamWriter(sessionPath)){
+			streamWriter.Write(saveDataString);
+		}
+	}
 	
-	public static string LoadHero(){
+	public static string LoadSession()
+	{
 		string savedDataString = "";
-		using (StreamReader streamReader = new StreamReader("Assets/Scripts/pahlawan.json")){
+		using (StreamReader streamReader = new StreamReader(sessionPath)){
+			savedDataString = streamReader.ReadToEnd();
+		}
+		return savedDataString;
+	}
+	
+	public static string LoadHero()
+	{
+		string savedDataString = "";
+		using (StreamReader streamReader = new StreamReader(heroesPath)){
 			savedDataString = streamReader.ReadToEnd();
 		}
 		return savedDataString;
@@ -41,3 +63,13 @@ public class SaveData
 {
     public List<string> opened;
 }
+
+
+[System.Serializable]
+public class SessionData
+{
+    public string character;
+}
+
+
+

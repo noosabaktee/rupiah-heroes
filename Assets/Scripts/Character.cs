@@ -40,7 +40,7 @@ public class Character : MonoBehaviour
 	{
 		audioSource.Play();
 		if(opened){
-			Vars.aboutChar = this.name;
+			SaveLoad.SaveSession(this.name);
 			SceneManager.LoadScene("About");
 		}
 	}
